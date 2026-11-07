@@ -6,7 +6,18 @@ import React from 'react'
 export default function App(){
 
 const [count, setcount] = React.useState(0)
-document.title ="Count: " +count
+React.useEffect(()=>{
+    document.title ="Count: " +count
+    
+    const favicon = document.querySelector("link[rel='icon']")
+    if (count < 0){
+        favicon.href = "/red.webp"
+    }else if (count > 0){
+        favicon.href = "/green.webp"
+    }else{
+        favicon.href = "/black.jpg"
+    }
+}, [count])
 
 function increment(){
     setcount(c => c+1)
